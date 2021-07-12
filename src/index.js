@@ -2,11 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import { CoursesContextProvider } from "./context";
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <CoursesContextProvider>
+     <App />
+    </CoursesContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
