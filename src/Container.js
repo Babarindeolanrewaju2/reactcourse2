@@ -3,29 +3,27 @@ import ReactDOM from 'react-dom'
 import './App.css';
 import { CoursesContext } from './context.js';
 import Course from './Course.js';
+import {
+    Link,
+  } from "react-router-dom";
 
 function Container() {
-  const { clickcollection, clickwishlist, clickallcourses, clickArchive, sortedCourses} = useContext(CoursesContext);
-  const [active, setActive] = useState(false);
-  const [style, setStyle] = useState({position: 'absolute', inset: '0px auto auto 0px', margin:'0px', transform: 'translate(0px, 37px)'});
-  const toggleClass = () => {
-    setActive(!active);
-  }
+  const {search, handleSearch, sortedCourses} = useContext(CoursesContext);
 
   return (
         <div class="section section-padding">
             <div class="container">
                 <div class="courses-category-wrapper">
                     <div class="courses-search search-2">
-                        <input type="text" placeholder="Search here"/>
+                        <input type="text" placeholder="Search here" value={search} onChange={(e) => handleSearch(e)}/>
                         <button><i class="icofont-search"></i></button>
                     </div>
 
                     <ul class="category-menu">
-                        <li><a onClick={clickallcourses} class="active" href="#">All Courses</a></li>
-                        <li><a onClick={clickcollection} href="#">Collections</a></li>
-                        <li><a onClick={clickwishlist} href="#">Wishlist</a></li>
-                        <li><a onClick={clickArchive} href="#">Archived</a></li>
+                    <Link to="/"><li><a class="active" href="!#">All Courses</a></li></Link>
+                    <Link to="/Collections"><li><a href="!#">Collections</a></li></Link>
+                    <Link to="/Wishlist"><li><a href="!#">Wishlist</a></li></Link>
+                    <Link to="/Archive"><li><a href="!#">Archive</a></li></Link>
                     </ul>
                 </div>
 
@@ -38,7 +36,6 @@ function Container() {
                         ))}
                         </div>
                 </div>
-
             </div>
         </div>
 

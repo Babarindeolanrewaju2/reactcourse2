@@ -1,13 +1,10 @@
-import React, { useEffect,useContext, useState } from "react";
-import ReactDOM from 'react-dom'
+import React, { useContext, useState } from "react";
 import './App.css';
 import { CoursesContext } from './context.js';
-import course from './Course.js';
 
 const Course = (props) => {
-    const {addcoursetoCollection, addcoursetoArchive, addallcouses, addcoursetoWishlist} = useContext(CoursesContext);
+    const {addcoursetoCollection, addcoursetoArchive, addcoursetoWishlist} = useContext(CoursesContext);
     const [active, setActive] = useState(false);
-    const [style, setStyle] = useState({position: 'absolute', inset: '0px auto auto 0px', margin:'0px', transform: 'translate(0px, 37px)'});
     const toggleClass = () => {
       setActive(!active);
     }
@@ -19,7 +16,6 @@ const Course = (props) => {
         <div class="single-courses">
             <div class="courses-images">
                 <a href="courses-details.html"><img src={img} alt="Courses"/></a>
-
                 <div class="courses-option dropdown">
                     <button class="option-toggle" data-bs-toggle="dropdown" aria-expanded="false" onClick={toggleClass}>
                         <span></span>
@@ -27,7 +23,7 @@ const Course = (props) => {
                         <span></span>
                     </button>
                     <ul id="dropdown-men" class={`dropdown-menu ${active ? "show" : null}`}>
-                        <li><a onClick={e => {addcoursetoCollection(id); toggleClass();}} href="#"><i class="icofont-share-alt"></i> Share</a></li>
+                        {/*<li><a onClick={e => {addcoursetoCollection(id); toggleClass();}} href="#"><i class="icofont-share-alt"></i> Share</a></li>*/}
                         <li><a onClick={e => {addcoursetoCollection(id); toggleClass();}} href="#"><i class="icofont-plus"></i> Create Collection</a></li>
                         <li><a onClick={e => {addcoursetoWishlist(id); toggleClass();}} href="#"><i class="icofont-star"></i> Favorite</a></li>
                         <li><a onClick={e => {addcoursetoArchive(id); toggleClass();}}href="#"><i class="icofont-archive"></i> Archive</a></li>

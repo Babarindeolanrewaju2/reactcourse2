@@ -12,7 +12,7 @@ export default [
   "progress": 10,
   "rating": 4,
   "wishlist": false,
-  "Achived": false,
+  "archive": false,
   "img": course1
 },
 {
@@ -21,8 +21,8 @@ export default [
     "author": "Pamela Foster",
     "progress": 40,
     "rating": 4,
-    "wishlist": true,
-    "Achived": false,
+    "wishlist": false,
+    "archive": false,
     "img": course2
   },
   {
@@ -32,7 +32,7 @@ export default [
     "progress": 25,
     "rating": 4,
     "wishlist": false,
-    "Achived": false,
+    "archive": false,
     "img": course3
   },
   {
@@ -42,7 +42,7 @@ export default [
     "progress": 15,
     "rating": 4,
     "wishlist": false,
-    "Achived": false,
+    "archive": false,
     "img": course4
   },
   {
@@ -52,7 +52,7 @@ export default [
     "progress": 20,
     "rating": 4,
     "wishlist": false,
-    "Achived": false,
+    "archive": false,
     "img": course5
   },
   {
@@ -62,7 +62,7 @@ export default [
     "progress": 80,
     "rating": 4,
     "wishlist": false,
-    "Achived": false,
+    "archive": false,
     "img": course1
   },
   {
@@ -72,7 +72,7 @@ export default [
     "progress": 30,
     "rating": 4,
     "wishlist": false,
-    "Achived": false,
+    "archive": false,
     "img": course3
   },
   {
@@ -82,7 +82,7 @@ export default [
     "progress": 60,
     "rating": 4,
     "wishlist": false,
-    "Achived": false,
+    "archive": false,
     "img": course2
   },
 ]

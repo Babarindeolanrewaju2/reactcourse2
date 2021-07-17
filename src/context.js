@@ -8,11 +8,7 @@ export const CoursesContextProvider = ({children}) => {
   const [search, setSearch] = useState ('');
   const [collection, setCollection] = useState ([]);
   const [archive, setArchive] = useState ([]);
-  const [all, setAll] = useState ([]);
-
-  let promise = new Promise (function (resolve, reject) {
-    setTimeout (() => resolve (items), 10);
-  });
+  const [wishlist, setWishlist] = useState ([]);
 
   const handleSearch = e => {
     e.preventDefault ();
@@ -34,7 +30,7 @@ export const CoursesContextProvider = ({children}) => {
     [search]
   );
 
-  const addcoursetoCollection = (id) => {
+  const addcoursetoCollection = id => {
     const check = collection.every (item => {
       return item.id !== id;
     });
@@ -42,55 +38,74 @@ export const CoursesContextProvider = ({children}) => {
       return el.id === id;
     });
     if (check) {
-        setCollection ([...collection, ...addtocollection]);
+      setCollection ([...collection, ...addtocollection]);
     } else {
       return;
     }
   };
 
   const addcoursetoArchive = id => {
-    const check = archive.every (item => {
-      return item.id !== id;
-    });
-    const addtoarchive = items.filter (el => {
+    const addtoarchived = items.find (el => {
       return el.id === id;
     });
-    if (check) {
-        setArchive ([...archive, ...addtoarchive]);
-    } else {
-      return;
-    }
+    addtoarchived.archive = !addtoarchived.archive;
+    const addtoarchive = items.filter (el => {
+      return el.archive === true;
+    });
+    setArchive ([...addtoarchive]);
+    console.log (archive);
   };
 
   const addcoursetoWishlist = id => {
     const addtoarchived = items.find (el => {
-        return el.id === id;
-      });
-    addtoarchived.wishlist = !addtoarchived.wishlist
+      return el.id === id;
+    });
+    addtoarchived.wishlist = !addtoarchived.wishlist;
+    const addtowishlist = items.filter (el => {
+      return el.wishlist === true;
+    });
+    setWishlist ([...addtowishlist]);
+    console.log (wishlist);
   };
 
-  const clickallcourses = () => {
-    setSortedCourses (items);
+  const removecoursetoCollection = id => {
+    const addtocollection = collection.filter (el => {
+      return el.id !== id;
+    });
+    setCollection ([...addtocollection]);
+    console.log (collection);
   };
 
-  const clickwishlist = () => {
-    setSortedCourses ([...sortedCourses.filter(el => {
-        return el.wishlist === true;
-      })]);
+  const removcoursewishlist = id => {
+    const addtowishlist = wishlist.filter (el => {
+      return el.id !== id;
+    });
+    setWishlist ([...addtowishlist]);
   };
 
-  const clickcollection = () => {
-    setSortedCourses ([...collection]);
+  const removcoursearchivelist = id => {
+    const addtoarchivelist = archive.filter (el => {
+      return el.id !== id;
+    });
+    setArchive ([...addtoarchivelist]);
   };
-
-  const clickArchive = () => {
-    setSortedCourses ([...archive]);
-  };
-
-
 
   return (
-    <CoursesContext.Provider value={{addcoursetoCollection, clickcollection, clickwishlist,clickallcourses, clickArchive, addcoursetoArchive , sortedCourses, addcoursetoWishlist,all}}>
+    <CoursesContext.Provider
+      value={{
+        addcoursetoCollection,
+        wishlist,
+        archive,
+        handleSearch,
+        removcoursearchivelist,
+        removecoursetoCollection,
+        removcoursewishlist,
+        collection,
+        addcoursetoArchive,
+        sortedCourses,
+        addcoursetoWishlist,
+      }}
+    >
       {children}
     </CoursesContext.Provider>
   );
